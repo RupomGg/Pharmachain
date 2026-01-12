@@ -96,7 +96,7 @@ export function TraceabilityPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState<BatchResult[]>([])
   const [selectedBatch, setSelectedBatch] = useState<any | null>(null) // Contains { batch, upstream, downstream }
-  const [error, setError] = useState<string | null>(null)
+
   
   // View mode is derived from selection now for simplicity
 
@@ -108,7 +108,7 @@ export function TraceabilityPage() {
     if (!query.trim()) return
 
     setIsLoading(true)
-    setError(null)
+
     setResults([])
     setSelectedBatch(null)
     
@@ -127,7 +127,7 @@ export function TraceabilityPage() {
       }
     } catch (err: any) {
       console.error(err)
-      setError("No records found on the blockchain.")
+      // setError("No records found on the blockchain.")
     } finally {
       setIsLoading(false)
     }
@@ -140,7 +140,7 @@ export function TraceabilityPage() {
         processFullTrace(res.data)
     } catch (err) {
         console.error(err)
-        setError("Failed to verify batch lineage.")
+        // setError("Failed to verify batch lineage.")
     } finally {
         setIsLoading(false)
     }
