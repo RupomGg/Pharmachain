@@ -18,8 +18,7 @@ import { BrowserProvider, Contract } from 'ethers';
 
 // Contract Config
 
-const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-import { API_URL } from '@/config/constants';
+import { API_URL, CONTRACT_ADDRESS } from '@/config/constants';
 
 const ABI = [
   "function sendBatch(uint256 parentBatchId, address recipient, uint256 quantity) external returns (uint256)"

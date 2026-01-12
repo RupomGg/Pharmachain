@@ -533,14 +533,25 @@ async function processTransaction(txHash) {
     const blockNumber = receipt.blockNumber;
     console.log(`[PROCESSOR] Transaction found in block ${blockNumber}`);
 
-    // 2. Fetch events from that block
+    // 3. Filter for our transaction
     const contract = getContract();
+    
+    console.log(`[PROCESSOR] Querying Contract at: ${contract.target}`);
+    console.log(`[PROCESSOR] Fetching events for Block: ${blockNumber}`);
+
     const events = await contract.queryFilter('*', blockNumber, blockNumber);
+    console.log(`[PROCESSOR] Found ${events.length} total events in block ${blockNumber}`);
     
     // 3. Filter for our transaction
     const txEvents = events.filter(e => e.transactionHash.toLowerCase() === txHash.toLowerCase());
     
+    console.log(`[PROCESSOR] Found ${txEvents.length} events for TxHash: ${txHash}`);
+
     if (txEvents.length === 0) {
+        // Log available events for debugging
+        console.log("No matching events. Available TxHashes in block:");
+        events.forEach(e => console.log(` - ${e.eventName}: ${e.transactionHash}`));
+        
         throw new Error("No PharmaChain events found in this transaction");
     }
 
