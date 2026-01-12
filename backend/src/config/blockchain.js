@@ -10,7 +10,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Load contract ABI
-const artifactPath = path.join(__dirname, '../../../artifacts/contracts/PharmaChainV2.sol/PharmaChainV2.json');
+const artifactPath = path.join(__dirname, 'PharmaChainV2.json');
 const contractArtifact = JSON.parse(fs.readFileSync(artifactPath, 'utf8'));
 
 // Configuration
