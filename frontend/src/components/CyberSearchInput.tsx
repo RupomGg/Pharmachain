@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Scan, Loader2, ArrowRight } from 'lucide-react'
+import { Search, Scan, ArrowRight } from 'lucide-react'
 
 interface CyberSearchInputProps {
   value: string;

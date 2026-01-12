@@ -67,7 +67,7 @@ export function RecentBatchesFeed() {
                             <Badge 
                                 className={`text-[10px] px-2 py-0.5 font-semibold tracking-wide border ${
                                     batch.status === 'CREATED' ? 'bg-blue-500/10 text-blue-400 border-blue-500/20' :
-                                    batch.status === 'SOLD' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
+                                    (batch.status as string) === 'SOLD' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
                                     batch.status === 'IN_TRANSIT' ? 'bg-amber-500/10 text-amber-400 border-amber-500/20' :
                                     'bg-slate-800 text-slate-400 border-white/10'
                                 }`}

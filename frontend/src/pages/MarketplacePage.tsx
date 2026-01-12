@@ -37,7 +37,7 @@ interface Batch {
 export default function MarketplacePage() {
   const { address } = useAccount(); // Use wagmi hook
   const [batches, setBatches] = useState<Batch[]>([]);
-  const [loading, setLoading] = useState(true);
+
   const [search, setSearch] = useState('');
   const [selectedBatch, setSelectedBatch] = useState<Batch | null>(null);
   const [orderQuantity, setOrderQuantity] = useState(1);
@@ -47,7 +47,7 @@ export default function MarketplacePage() {
     if (!address) return;
     
     try {
-      setLoading(true);
+
       
       const query = search ? `?search=${search}` : '';
       const response = await fetch(`http://localhost:3000/api/orders/marketplace${query}`, {
@@ -74,7 +74,7 @@ export default function MarketplacePage() {
       if (error instanceof Error && error.name === 'AbortError') return;
       console.error("Failed to fetch marketplace", error);
     } finally {
-      setLoading(false);
+
     }
   }, [address, search]);
 
@@ -86,7 +86,7 @@ export default function MarketplacePage() {
         if (address) {
             fetchMarketplace(controller.signal);
         } else {
-            setLoading(false);
+
         }
     }, 300); // 300ms debounce
 

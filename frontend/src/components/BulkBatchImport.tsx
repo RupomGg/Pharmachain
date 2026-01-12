@@ -22,7 +22,7 @@ interface BulkBatchImportProps {
   onSuccess?: () => void;
 }
 
-export function BulkBatchImport({ initialData = [], onSuccess }: BulkBatchImportProps) {
+export function BulkBatchImport({ initialData = [] }: BulkBatchImportProps) {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [step, setStep] = useState<'select' | 'uploaded' | 'minting' | 'complete'>('select');
   const [isDragging, setIsDragging] = useState(false);

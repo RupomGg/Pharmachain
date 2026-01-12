@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
-  Factory, Truck, Store, Package, CheckCircle, 
-  AlertCircle, Loader2, Globe, FileText, Thermometer, 
-  Hash, Calendar, Box, Activity, ChevronRight, ShieldCheck, MapPin, Clock
+  Factory, Truck, Store, Package, 
+  Globe, FileText, Thermometer, 
+  Calendar, Box, Activity, ChevronRight, ShieldCheck, MapPin, Clock
 } from 'lucide-react'
 import axios from 'axios'
 import { Badge } from '../components/ui/badge'
@@ -99,7 +99,7 @@ export function TraceabilityPage() {
   const [error, setError] = useState<string | null>(null)
   
   // View mode is derived from selection now for simplicity
-  const viewMode = selectedBatch ? 'details' : 'search'
+
 
   // --- Logic ---
 

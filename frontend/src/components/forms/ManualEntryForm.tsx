@@ -12,7 +12,7 @@ import {
 } from "../ui/form"
 import { Input } from "../ui/input"
 import { Textarea } from "../ui/textarea"
-import { Plus, Loader2, Zap } from "lucide-react"
+import { Loader2, Zap } from "lucide-react"
 import { useAccount } from "wagmi"
 import { useBulkBatchImport } from "../../hooks/useBulkBatchImport"
 import { useToast } from "../ui/use-toast"
@@ -66,7 +66,7 @@ export function ManualEntryForm({ onAddBatch }: ManualEntryFormProps) {
 
   // Hook for Direct Minting
   const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
-  const { uploadManualBatches, mintBatches, isProcessing, isPending, isConfirming, isConfirmed } = useBulkBatchImport(CONTRACT_ADDRESS);
+  const { uploadManualBatches, mintBatches, isProcessing, isPending, isConfirming } = useBulkBatchImport(CONTRACT_ADDRESS);
   const { toast } = useToast();
 
   // Helper for Regex Math Logic

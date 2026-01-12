@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useAccount, useWriteContract, usePublicClient, useChainId } from 'wagmi'
-import { parseAbiItem } from 'viem'
-import { keccak256, toUtf8Bytes, ethers } from 'ethers'
+
+import { keccak256, toUtf8Bytes } from 'ethers'
 import axios from 'axios'
 import { Card, CardContent } from '@/components/ui/card'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
@@ -10,8 +10,8 @@ import { Badge } from '@/components/ui/badge'
 import { useToast } from '../hooks/use-toast'
 import { generateIdentityHash } from '../utils/hashUtils'
 import { Users, Factory, Truck, Store, Copy, Check, Activity, ShieldCheck, X } from 'lucide-react'
-import { CONTRACT_ADDRESS, DEPLOYMENT_BLOCK } from '../config/constants'
-import SupplyChainArtifact from '../../../artifacts/contracts/PharmaChainV2.sol/PharmaChainV2.json'
+import { CONTRACT_ADDRESS } from '../config/constants'
+import SupplyChainArtifact from '../config/PharmaChainV2.json'
 
 // Role Hashes for counting
 // Role Hashes for counting (Deprecated - using DB stats now)
