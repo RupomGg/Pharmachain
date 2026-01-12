@@ -1,7 +1,9 @@
 import axios from 'axios'
 import type { Batch, BatchesResponse, TraceabilityData, EventLog } from '../types/batch'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api'
+import { API_URL } from '../config/constants'
+
+const API_BASE_URL = API_URL
 
 const api = axios.create({
   baseURL: API_BASE_URL,

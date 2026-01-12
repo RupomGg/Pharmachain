@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Package, TrendingUp, Clock, Archive, ShoppingCart, FileText } from 'lucide-react'
 import { useAccount } from 'wagmi'
 import { useOwnerBatches } from '../hooks/useBatches'
+import { API_URL } from '../config/constants'
 
 import { UserProfileCard } from '../components/dashboard/UserProfileCard'
 import { Button } from '@/components/ui/button'
@@ -35,7 +36,7 @@ export function DistributorDashboard() {
   const fetchOrders = async () => {
     setError(null)
     try {
-      const response = await fetch('http://localhost:3000/api/orders/sent', {
+      const response = await fetch(`${API_URL}/orders/sent`, {
          headers: { 'x-wallet-address': address || '' }
       })
       

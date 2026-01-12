@@ -8,6 +8,7 @@ import {
 import axios from 'axios'
 import { Badge } from '../components/ui/badge'
 import { CyberSearchInput } from '../components/CyberSearchInput'
+import { API_URL } from '../config/constants'
 
 // --- Types & Interfaces ---
 
@@ -114,7 +115,7 @@ export function TraceabilityPage() {
     
     // Simulate delay for the "Cyber" feel if needed, but direct call is better
     try {
-      const res = await axios.get(`http://localhost:3000/api/trace/search?q=${query}`)
+      const res = await axios.get(`${API_URL}/trace/search?q=${query}`)
       
       if (res.data.batch && res.data.upstream) {
         // Precise match with full trace
@@ -136,7 +137,7 @@ export function TraceabilityPage() {
   const handleSelectBatch = async (batchId: string) => {
     setIsLoading(true)
     try {
-        const res = await axios.get(`http://localhost:3000/api/trace/${batchId}`)
+        const res = await axios.get(`${API_URL}/trace/${batchId}`)
         processFullTrace(res.data)
     } catch (err) {
         console.error(err)

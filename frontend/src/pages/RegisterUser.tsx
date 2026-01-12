@@ -6,6 +6,7 @@ import * as z from 'zod'
 import axios from 'axios'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useNavigate } from 'react-router-dom'
+import { API_URL } from '../config/constants'
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -70,7 +71,7 @@ export default function RegisterUser() {
     const checkStatus = async () => {
       if (!address) return
       try {
-        const res = await axios.get(`http://localhost:3000/api/users/${address}`)
+        const res = await axios.get(`${API_URL}/users/${address}`)
         if (res.data) {
           if (res.data.status === 'PENDING') {
             navigate('/')
@@ -100,7 +101,7 @@ export default function RegisterUser() {
     setErrorMessage('')
 
     try {
-      const response = await axios.post('http://localhost:3000/api/users/register', {
+      const response = await axios.post(`${API_URL}/users/register`, {
         walletAddress: address,
         name: data.name,
         email: data.email,

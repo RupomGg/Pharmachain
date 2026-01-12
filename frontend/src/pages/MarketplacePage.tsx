@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { API_URL } from '@/config/constants';
 
 // Types
 interface Batch {
@@ -50,7 +51,7 @@ export default function MarketplacePage() {
 
       
       const query = search ? `?search=${search}` : '';
-      const response = await fetch(`http://localhost:3000/api/orders/marketplace${query}`, {
+      const response = await fetch(`${API_URL}/orders/marketplace${query}`, {
         headers: {
             'x-wallet-address': address || ''
         },
@@ -108,7 +109,7 @@ export default function MarketplacePage() {
       const packPrice = basePrice * unitsPerPack;
       const finalTotalPrice = orderQuantity * packPrice;
 
-      const response = await fetch('http://localhost:3000/api/orders', {
+      const response = await fetch(`${API_URL}/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

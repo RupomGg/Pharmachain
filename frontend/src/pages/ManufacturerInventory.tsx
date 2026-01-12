@@ -15,6 +15,7 @@ import {
   Search, Filter, ChevronDown, RefreshCw, Package, AlertTriangle, LayoutGrid, List, ArrowRight, Activity, Calendar
 } from 'lucide-react'
 import { ProductDetailModal } from '../components/ProductDetailModal'
+import { API_URL } from '../config/constants'
 import { Card, CardContent, CardFooter } from '../components/ui/card'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '../components/ui/dialog'
 
@@ -106,7 +107,7 @@ export function ManufacturerInventory() {
       if (!syncTxHash) return;
       setSyncing(true);
       try {
-          const res = await fetch('http://localhost:3000/api/events/sync', {
+          const res = await fetch(`${API_URL}/events/sync`, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ txHash: syncTxHash.trim() })

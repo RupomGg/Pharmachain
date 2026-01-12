@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { useToast } from '../hooks/use-toast'
 import { generateIdentityHash } from '../utils/hashUtils'
 import { Users, Factory, Truck, Store, Copy, Check, Activity, ShieldCheck, X } from 'lucide-react'
-import { CONTRACT_ADDRESS } from '../config/constants'
+import { CONTRACT_ADDRESS, API_URL } from '../config/constants'
 import SupplyChainArtifact from '../config/PharmaChainV2.json'
 
 // Role Hashes for counting
@@ -34,7 +34,7 @@ export default function AdminRequests() {
   // Fetch Pending Requests
   const fetchRequests = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/admin/pending-users', {
+      const res = await axios.get(`${API_URL}/admin/pending-users`, {
         headers: { 'x-wallet-address': address }
       });
       setRequests(res.data);
@@ -46,7 +46,7 @@ export default function AdminRequests() {
   // Fetch System Stats from Database
   const fetchStats = async () => {
     try {
-        const res = await axios.get('http://localhost:3000/api/admin/stats', {
+        const res = await axios.get(`${API_URL}/admin/stats`, {
             headers: { 'x-wallet-address': address }
         });
         setStats(res.data);
@@ -100,7 +100,7 @@ export default function AdminRequests() {
 
       toast({ title: "Transaction Sent", description: "Waiting for confirmation..." })
       
-      await axios.put('http://localhost:3000/api/admin/update-status', {
+      await axios.put(`${API_URL}/admin/update-status`, {
         walletAddress: user.walletAddress,
         status: 'APPROVED'
       }, {
@@ -125,7 +125,7 @@ export default function AdminRequests() {
 
   const handleReject = async (user: any) => {
     try {
-        await axios.put('http://localhost:3000/api/admin/update-status', {
+        await axios.put(`${API_URL}/admin/update-status`, {
             walletAddress: user.walletAddress,
             status: 'REJECTED'
           }, {

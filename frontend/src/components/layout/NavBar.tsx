@@ -4,6 +4,7 @@ import { useAccount } from 'wagmi'
 import { useEffect, useState, useRef, useCallback } from 'react'
 import axios from 'axios'
 import { CustomConnectButton } from './CustomConnectButton'
+import { API_URL } from '../../config/constants'
 
 const ADMIN_WALLET = "0xdB77AA93eB6969F487234E042bb5A1C9deDbd5BB";
 
@@ -29,7 +30,7 @@ export function NavBar() {
       // If Admin, fetch pending requests count
       if (isAdmin) {
           try {
-              const res = await axios.get('http://localhost:3000/api/admin/pending-users', {
+              const res = await axios.get(`${API_URL}/admin/pending-users`, {
                   headers: { 'x-wallet-address': address }
               });
               setPendingCount(res.data.length);
@@ -42,7 +43,7 @@ export function NavBar() {
 
       // Fetch user status from backend
       try {
-        const res = await axios.get(`http://localhost:3000/api/users/${address}`);
+        const res = await axios.get(`${API_URL}/users/${address}`);
         setUserStatus(res.data.status);
         setUserRole(res.data.role);
         lastFetchedAddress.current = currentAddress;

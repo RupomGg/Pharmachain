@@ -5,6 +5,7 @@ import { Mail, Building2, MapPin, Phone, Wallet, Network, FileText } from 'lucid
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { Button } from '@/components/ui/button'
 import axios from 'axios'
+import { API_URL } from '../../config/constants'
 
 interface UserDetails {
   walletAddress: string
@@ -30,7 +31,7 @@ export function UserProfileCard() {
       }
 
       try {
-        const res = await axios.get(`http://localhost:3000/api/users/${address}`)
+        const res = await axios.get(`${API_URL}/users/${address}`)
         setUserDetails(res.data)
       } catch (error) {
         console.error('Failed to fetch user details:', error)

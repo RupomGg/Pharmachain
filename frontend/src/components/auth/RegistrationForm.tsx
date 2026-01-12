@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import axios from 'axios'
+import { API_URL } from '../../config/constants'
 
 // Zod Schema for PII
 const formSchema = z.object({
@@ -35,7 +36,7 @@ export function RegistrationForm() {
     const checkStatus = async () => {
         if (!address) return;
         try {
-            const res = await axios.get(`http://localhost:3000/api/users/${address}`);
+            const res = await axios.get(`${API_URL}/users/${address}`);
             if (res.data) {
                 setStatus(res.data.status);
                 if (res.data.status === 'PENDING' || res.data.status === 'APPROVED') {
@@ -80,7 +81,7 @@ export function RegistrationForm() {
       // The previous prompt mentioned "Role Requested" in the Admin table.
       // I will add a default role or let them choose. Let's start with MANUFACTURER as default.
       
-      const response = await axios.post('http://localhost:3000/api/users/register', { 
+      const response = await axios.post(`${API_URL}/users/register`, { 
          walletAddress: address, 
          name: data.fullName, 
          requestedRole: 'MANUFACTURER', // Defaulting for now

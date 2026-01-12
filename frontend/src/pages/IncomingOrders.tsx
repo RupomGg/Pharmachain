@@ -19,6 +19,7 @@ import { BrowserProvider, Contract } from 'ethers';
 // Contract Config
 
 const CONTRACT_ADDRESS = import.meta.env.VITE_CONTRACT_ADDRESS || "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
+import { API_URL } from '@/config/constants';
 
 const ABI = [
   "function sendBatch(uint256 parentBatchId, address recipient, uint256 quantity) external returns (uint256)"
@@ -54,7 +55,7 @@ export default function IncomingOrders() {
     try {
       setLoading(true);
       
-      const response = await fetch('http://localhost:3000/api/orders/received', {
+      const response = await fetch(`${API_URL}/orders/received`, {
         headers: {
             'x-wallet-address': address || ''
         }
@@ -120,7 +121,7 @@ export default function IncomingOrders() {
       await tx.wait();
 
       // 3. Update Backend
-      await fetch(`http://localhost:3000/api/orders/${order._id}/confirm`, {
+      await fetch(`${API_URL}/orders/${order._id}/confirm`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

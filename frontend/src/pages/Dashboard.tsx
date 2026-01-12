@@ -4,6 +4,7 @@ import { useAccount } from 'wagmi'
 import axios from 'axios'
 
 const ADMIN_WALLET = "0xdB77AA93eB6969F487234E042bb5A1C9deDbd5BB"
+import { API_URL } from '../config/constants'
 
 export function Dashboard() {
   const { address } = useAccount()
@@ -26,7 +27,7 @@ export function Dashboard() {
 
       // Fetch user role from backend
       try {
-        const res = await axios.get(`http://localhost:3000/api/users/${address}`)
+        const res = await axios.get(`${API_URL}/users/${address}`)
         const { role, status } = res.data
 
         // Check if role is ADMIN (Backend source of truth)
