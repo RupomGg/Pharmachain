@@ -79,7 +79,6 @@ eventLogSchema.index({ transactionHash: 1, logIndex: 1 }, { unique: true });
 // Index for querying events by batch
 eventLogSchema.index({ batchId: 1, processedAt: -1 });
 
-// Index for querying by block number (for sync recovery)
-eventLogSchema.index({ blockNumber: 1 });
+
 
 export const EventLog = mongoose.model('EventLog', eventLogSchema);
