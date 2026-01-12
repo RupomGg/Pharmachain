@@ -1,0 +1,34 @@
+# Environment files (IMPORTANT: Never commit API keys!)
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
+Deployment artifacts
+deployments/
+
+# OpenZeppelin upgrades
+.openzeppelin/
+
+# Hardhat files
+cache/
+artifacts/
+typechain-types/
+
+# Node modules
+node_modules/
+
+# Coverage
+coverage/
+coverage.json
+
+# Gas reporter
+gasReporterOutput.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
