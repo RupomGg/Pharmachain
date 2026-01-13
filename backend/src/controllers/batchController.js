@@ -229,8 +229,8 @@ export const searchBatches = async (req, res) => {
     }
     if (status && status !== 'ALL') query.status = status;
     
-    // Exclude Drafts (Batch 0)
-    query.batchId = { $ne: 0 };
+    // Exclude Drafts (Batch 0) - DISABLED to allow showing pending/manual batches
+    // query.batchId = { $ne: 0 };
 
     const skip = (parseInt(page) - 1) * parseInt(limit);
     const batches = await Batch.find(query)

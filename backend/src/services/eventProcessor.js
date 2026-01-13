@@ -560,9 +560,17 @@ async function processTransaction(txHash) {
 
     let processedCount = 0;
     for (const event of txEvents) {
+         // Safety check: ensure we can resolve the event name
+         const resolvedName = event.eventName || (event.fragment && event.fragment.name);
+         
+         if (!resolvedName) {
+             console.warn(`[PROCESSOR] Skipping unidentified event at index ${event.index} (ABI Mismatch?)`);
+             continue;
+         }
+
         // Construct eventData compatible with processEvent
          const eventData = {
-            eventName: event.eventName || event.fragment.name,
+            eventName: resolvedName,
             args: parseEventArgs(event.args),
             blockNumber: event.blockNumber,
             transactionHash: event.transactionHash,
